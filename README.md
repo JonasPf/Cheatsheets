@@ -5,11 +5,11 @@ The cheatsheets presented here are only intended for my own use. If they help yo
 Having said that, you might want to use them as a template for creating your own cheatsheets. The css and js make it very easy to create decent looking ones.
 
 Use syntax highlighting like this:
-	<code data-language="python">print "Hello World"</code>
+	&lt;code data-language="python">print "Hello World"&lt;/code&gt;
 or set the default language like this:
-	<body data-language="python">
-		<code>print "Hello World"</code>
-	</body>
+	&lt;body data-language="python">
+		&lt;code>print "Hello World"&lt;/code&gt;
+	&lt;/body&gt;
 
 Use the following classes for different sized articles:
 
