@@ -13,10 +13,10 @@ or set the default language like this:
 
 Use the following classes for different sized articles:
 
-*  <article class="small">
-*  <article>
-*  <article class="large">
-*  <article class="full">
+*  &lt;article class="small"&gt;
+*  &lt;article&gt;
+*  &lt;article class="large"&gt;
+*  &lt;article class="full"&gt;
 
 Supported:
 
