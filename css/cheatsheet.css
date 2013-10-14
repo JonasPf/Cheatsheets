@@ -1,0 +1,192 @@
+body {
+	color: #333;
+}
+
+h1 {
+	background-color: #333;
+	padding: 0.5em;
+	color: #fff;
+	margin-top: 0;
+	text-align: center;
+}
+
+.container {
+	padding-left: 4%;
+	padding-right: 2%;
+	/* the articles also have a 2% margin-right therefore we define only 2% instead
+	   of 4% here. this is not totally exact because he margin of the articles is
+	   calculate from the width of the container whereas the margin of the container
+	   is calculated from the width of the window....
+
+	   ... but it's good enough
+	*/
+}
+
+article {
+	box-sizing: border-box; 
+
+	border: 1px solid #333;
+	border-radius: 4px;
+	width: 48%;
+
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 2%;
+}
+
+article.small {
+	width: 23%;
+}
+
+article.large {
+	width: 73%;
+}
+
+article.full {
+	width: 98%; /* 2% margin right */
+}
+
+article h2 {
+	background-color: #333;
+	padding: 0.5em;
+	color: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	margin-top: 0;
+}
+
+article h3 {
+	padding: 1em 0 0 0.5em;
+	color: #333;
+	margin: 0;
+	font-size: 1em;
+}
+
+article hr {
+	color: #333;
+	background-color: #333;
+	height: 1px;
+	border: none;
+}
+
+/* Small screen => Show articles below each other */
+@media (max-width:767px) {
+    article, article.small, article.large {
+        width:98%;
+        margin-right:2%;
+    }
+}
+
+/* Large screen => Fixed width for better readability */
+@media (min-width:1360px) {
+    .container {
+    	width: 1360px;
+		margin-left: auto;
+		margin-right: auto;
+    }
+}
+
+code {
+    background: #eee;
+	border: 1px solid #ccc;
+	padding: 0 0.1em 0 0.1em;
+
+	border-radius: 4px;
+	color: #222;
+}
+
+code.multiline {
+	display: block;
+	white-space: pre-wrap;
+	padding: 0.5em;
+}
+
+dl, p, code.multiline {
+	margin: 1em 0.5em 1em 0.5em;
+}
+
+/* If a code block is inside another element we already have the margin from that element */
+dt code.multiline,
+dd code.multiline,
+p code.multiline {
+	margin: 0 0 0.5em 0;
+}
+
+li, ol {
+	margin-bottom: 0.5em;
+	margin-right: 0.5em;
+}
+
+dt {
+	margin: 1.5em 0 0.5em 0;
+}
+
+dd {
+	margin: 0 0 0 1em;
+}
+
+.todo {
+	background: yellow;
+}
+
+kbd {
+	margin: 0px 0.1em;
+	padding: 0.1em 0.6em;
+	border-radius: 3px;
+	border: 1px solid rgb(204, 204, 204);
+	color: rgb(51, 51, 51);
+	line-height: 1.4;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10px;
+	display: inline-block;
+	box-shadow: 0px 1px 0px rgba(0,0,0,0.2), inset 0px 0px 0px 2px #ffffff;
+	background-color: rgb(247, 247, 247);
+	-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+	-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+table {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+table.nowrap_first_column td:first-child { 
+	white-space: nowrap;
+}
+
+td, th {
+	padding: .5em;
+}
+
+th {
+	text-align: left;
+	border-bottom: 1px solid #333;
+	border-top: 1px solid #333;
+}
+
+tr:nth-child(even) {
+  background-color: #fff;
+}
+
+
+tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+nav {
+    list-style none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav li{
+    display: inline;
+}
+nav a{
+    display: inline-block;
+    padding: 10px;
+}

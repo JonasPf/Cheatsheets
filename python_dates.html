@@ -1,0 +1,227 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+
+	<!-- cheatsheet specific stylesheets -->
+
+</head>
+<body data-language="python">
+	<h1>Python date formatting and parsing</h1>
+
+	<div class="container">
+
+		<article>
+			<h2>Basics</h2>			
+
+			<p>Details can be found in the official <a href="http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior">documentation</a></p>
+
+			<dl>
+				<dt><code>datetime.strftime(format)</code></dt>
+				<dd>date to string conversion [<b>str</b>ing <b>f</b>ormat <b>time</b>]</dd>
+
+				<dt><code>strptime(string, format)</code></dt>
+				<dd>string to date conversion [<b>str</b>ing <b>p</b>arse <b>time</b>]</dd>
+			</dl>
+
+			<table>
+				<tr>
+					<th>Directive</th>
+					<th>Description</th>
+					<th>Example</th>
+				</tr>
+
+				<tr>
+					<td>%c</td>
+					<td>Date and time (l)</td>
+					<td>Tue Aug 16 21:30:00 1988</td>
+				</tr>
+
+				<tr>
+					<td>%x</td>
+					<td>Date (l)</td>
+					<td>08/16/1988</td>
+				</tr>
+
+				<tr>
+					<td>%X</td>
+					<td>Time (l)</td>
+					<td>21:30:00</td>
+				</tr>
+
+				<tr>
+					<td>%%</td>
+					<td>Literal '%'</td>
+					<td>%</td>
+				</tr>
+
+			</table>
+
+			<hr/>
+			<p>(l): Locale dependent</p>
+		</article>
+
+		<article>
+			<h2>Date</h2>
+
+			<table>
+				<tr>
+					<th>Directive</th>
+					<th>Description</th>
+					<th>Example</th>
+				</tr>
+
+				<tr>
+					<td>%a</td>
+					<td>Weekday (l)</td>
+					<td>Sun, Mon, ..., Sat</td>
+				</tr>
+
+				<tr>
+					<td>%A</td>
+					<td>Weekday (l)</td>
+					<td>Sunday, Monday, ..., Saturday</td>
+				</tr>
+
+				<tr>
+					<td>%w</td>
+					<td>Weekday (Sunday = 0)</td>
+					<td>0, 1, ..., 6</td>
+				</tr>				
+
+				<tr>
+					<td>%b</td>
+					<td>Month (l)</td>
+					<td>Jan, Feb, ..., Dec</td>
+				</tr>
+
+				<tr>
+					<td>%B</td>
+					<td>Month (l)</td>
+					<td>January, February, ..., December</td>
+				</tr>
+
+				<tr>
+					<td>%m</td>
+					<td>Month</td>
+					<td>01, 02, ..., 12</td>
+				</tr>
+
+				<tr>
+					<td>%y</td>
+					<td>Year</td>
+					<td>00, 01, ..., 99</td>
+				</tr>	
+
+				<tr>
+					<td>%Y</td>
+					<td>Year</td>
+					<td>1970, 1988, 2001, 2013</td>
+				</tr>
+
+				<tr>
+					<td>%d</td>
+					<td>Day of the month</td>
+					<td>01, 02, ..., 31</td>
+				</tr>
+
+				<tr>
+					<td>%j</td>
+					<td>Day of the year</td>
+					<td>001, 002, ..., 366</td>
+				</tr>
+
+
+				<tr>
+					<td>%U</td>
+					<td>Week of the year (Starts Sunday)</td>
+					<td>00, 01, ..., 53</td>
+				</tr>
+
+				<tr>
+					<td>%W</td>
+					<td>Week of the year (Starts Monday)</td>
+					<td>00, 01, ..., 53</td>
+				</tr>
+			</table>
+			
+			<hr/>
+			<p>(l): Locale dependent</p>
+		</article>
+
+		<article>
+			<h2>Time</h2>
+
+			<table>
+				<tr>
+					<th>Directive</th>
+					<th>Description</th>
+					<th>Example</th>
+				</tr>
+
+				<tr>
+					<td>%H</td>
+					<td>Hour</td>
+					<td>00, 01, ..., 23</td>
+				</tr>
+
+				<tr>
+					<td>%I</td>
+					<td>Hour</td>
+					<td>01, 02, ..., 12</td>
+				</tr>
+
+				<tr>
+					<td>%p</td>
+					<td>AM/PM (l)</td>
+					<td>AM, PM</td>
+				</tr>
+
+				<tr>
+					<td>%M</td>
+					<td>Minute</td>
+					<td>00, 01, ..., 59</td>
+				</tr>
+
+				<tr>
+					<td>%S</td>
+					<td>Second</td>
+					<td>00, 01, ..., 59</td>
+				</tr>
+
+				<tr>
+					<td>%f</td>
+					<td>Microsecond</td>
+					<td>000000, 000001, ..., 999999</td>
+				</tr>
+
+				<tr>
+					<td>%Z</td>
+					<td>UTC offset</td>
+					<td>(empty), UTC, EST, CST</td>
+				</tr>
+
+				<tr>
+					<td>%z</td>
+					<td>Time zone</td>
+					<td>(empty), +0000, -0400, +1030</td>
+				</tr>
+			</table>
+
+			<hr/>
+			<p>(l): Locale dependent</p>
+		</article>
+	</div>	
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+	
+</body>
+</html>

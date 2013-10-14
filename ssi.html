@@ -1,0 +1,147 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+</head>
+<body data-language="html">
+	<h1>Server Side Includes</h1>
+
+	<div class="container">
+
+		<article>
+			<h2>Installation (Apache)</h2>
+
+			<ol>
+				<li>Uncomment module in <i>httpd.conf</i>: <code>LoadModule include_module modules/mod_include.so mod_include</code></li>
+
+				<li>Configure module in <i>httpd.conf</i> or <i>.htaccess</i>:
+			<code class="multiline"># Enable SSI
+Options +Includes
+
+# Parse all .shtml files ...
+#AddType text/html .shtml
+#AddOutputFilter INCLUDES .shtml
+# ... or parse all.html files (bad performance!) ...
+#AddOutputFilter INCLUDES .html
+# ... or parse all files with the execute bit set (unix only)
+XBitHack on</code></li>
+
+				<li>For XBitHack, change the execute bit: <code>chmod +x file.html</code></p>
+			</ol>
+		</article>
+
+		<article>
+			<h2>Basic Commands</h2>
+
+			<p><strong> Whitespace is important!</strong></p>
+
+			<dl>
+				<dt><code>&lt;!--#include file="ssi-file.html" --&gt;</code></dt>
+				<dd>Replaces the comments with the content of <i>ssi-file.html</i>. Path must be relative to the current file. Cannot contain <code>../</code></dd>
+
+				<dt><code>&lt;!--#include virtual="ssi-file.html" --&gt;</code></dt>
+				<dd>URL-path. Either absolute to the root (begins with <code>/</code>) or relative to the current file. Can be used to point to cgi</dd>
+
+				<dt><code>&lt;!--#include virtual="/a.html" onerror="/error.html" --&gt;</code></dt>
+				<dd>Show the content of <i>error.html</i> if the include doesn't work<dd>
+
+				<dt><code>&lt;pre&gt;&lt;!--#printenv --&gt;&lt;/pre&gt;</code></dt>
+				<dd>Show all available variables</dd>
+			</dl>
+		</article>
+
+
+		<article>
+			<h2>Legacy expression syntax</h2>
+
+			<p>Used before version 2.3.13. To active it in newer versions add <code>SSILegacyExprParser on</code> to <i>.htaccess</i> or <i>httpd.conf</i></p>
+
+			<hr/>
+
+			<dl>
+				<dt><code>$variable</code></dt>
+				<dd>value of variable</dd>
+
+				<dt><code>string</code></dt>
+				<dd>true if string is not empty. Everything that's not a variable or operator is treated as a string. Strings that contain whitespace must be quoted: <code>'string'</code></dd>
+
+				<dt><code>-A string</code></dt>
+				<dd>true if the URL represented by the string is accessible. Useful to show content/links only to authorized users.</dd>
+
+				<dt><code>string1 = string2</code> or <code>string1 == string2</code></dt>
+				<dd>true if the two strings are equal</dd>
+
+				<dt><code>string = /regex/</code> or <code>string == /regex/</code></dt>
+				<dd>true if the string matches the <a href="http://perldoc.perl.org/perlre.html">regular expression</a>. Groups are stored in the variables $0 .. $9 and can be accessed later in the code</dd>
+
+				<dt><code>string1 != string2</code> or <code>string != /regex/</code></dt>
+				<dd>true if the two strings are not equal / string doesn't match the regular expression</dd>
+
+				<dt><code>str1 &lt; str2</code> or <code>str1 &lt;= str2</code> or <code>str1 > str2</code> or <code>str1 >= str2</code></dt>
+				<dd>Compare string1 with string2. Strings are compared literally (using strcmp(3)). Therefore the string "100" is less than "20"</dd>
+
+				<dt><code>( condition )</code></dt>
+				<dd>Can be used to clarify the order of operations</dd>
+
+				<dt><code>! condition</code></dt>
+				<dd>Negates the condition</dd>
+
+				<dt><code>test_condition1 &amp;&amp; test_condition2</code></dt>
+				<dd>true if both test_condition1 and test_condition2 are true</dd>
+
+				<dt><code>test_condition1 || test_condition2</code></dt>
+				<dd>true if either test_condition1 or test_condition2 is true</dd>
+		</article>
+
+		<article>
+			<h2>Flow Control</h2>
+
+			<p><code class="multiline">&lt;!--#if expr="v('DOCUMENT_NAME') == 'index.html'" --&gt;
+&lt;h1&gt;Start here&lt;/h1&gt;
+&lt;!--#elif expr="v('DOCUMENT_NAME') == 'contact.html'" --&gt;
+&lt;h1&gt;Please contact us!&lt;/h1&gt;
+&lt;!--#else --&gt;
+&lt;h1&gt;Unknown site&lt;/h1&gt;
+&lt;!--#endif --&gt;</code></p>
+
+			<p>The condition follows the <a href="http://httpd.apache.org/docs/trunk/expr.html">ap_expr</a> or the legacy expression syntax (see below). Use <code>&lt;!--#printenv --&gt;</code> to see all available variables.</p>
+
+		</article>
+
+		<article class="small">
+			<h2>More Information</h2>
+
+			<ul>
+				<li><a href="http://httpd.apache.org/docs/current/mod/mod_include.html">Module Documentation</a></li>
+				<li><a href="http://httpd.apache.org/docs/trunk/expr.html">Apache Epressions (ap_expr)</a></li>	
+			</ul>
+
+		</article>
+
+		<article class="small">
+			<h2>Other Commands</h2>
+				<ul>
+					<li>config</li>
+					<li>echo</li>
+					<li>exec</li>
+					<li>fsize</li>
+					<li>flastmod</li>
+					<li>set</li>
+				</ul>
+			</dl>
+		</article>
+
+	</div>
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+
+</body>
+</html>

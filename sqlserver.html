@@ -1,0 +1,52 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+</head>
+<body>
+	<h1>Server Side Includes</h1>
+
+	<div class="container">
+
+		<article>
+			<h2>Snippets</h2>
+
+			<h3>No. of rows in each table</h3>
+
+			<p><strong>Deprecated</strong> but so far it works on all versions. This makes use of the fact that the number of rows are stored with each index. <code>o.xtype = 'U'</code> selects only user tables and <code>i.indid &lt; 2</code> makes sure we select only one index per table. This can be a clustered index (1) or a heap index(0).</p>
+
+			<p><code class="multiline">SELECT o.name, i.rowcnt 
+FROM sysindexes AS i
+INNER JOIN sysobjects AS o
+ON i.id = o.id 
+WHERE i.indid &lt; 2  AND o.xtype = 'U';</code></p>
+		</article>
+
+		<article>
+			<h2>Indexes</h2>
+
+			<dl>
+				<dt>Heap</dt>
+				<dd>Records are not stored in any particular order</dd>
+
+				<dt>Clustered</dt>
+				<dd>Records are stored according to this index (often primary key)</dd>
+
+				<dt>Non-Clustered</dt>
+				<dd>Only links to the records. Does not affect the way the records are stored</dd>
+
+		</article>
+	</div>
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+	
+</body>
+</html>

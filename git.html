@@ -1,0 +1,315 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+
+	<!-- font awesome -->
+	<link rel="stylesheet" href="css\font-awesome.min.css">
+</head>
+<body>
+	<h1>Git</h1>
+
+	<div class="container">
+		<nav>
+		<ul>
+			<li><a href="#basics">Basic</a></li>
+			<li><a href="#history">History</a></li>
+			<li><a href="#versions">Old Versions</a></li>
+			<li><a href="#tagging">Tagging</a></li>
+			<li><a href="#mistakes">Fixing Mistakes</a></li>
+			<li><a href="#internals">Internals</a></li>
+			<li><a href="#branching">Branching</a></li>
+			<li><a href="#merging">Merging</a></li>
+			<li><a href="#branching">Branching</a></li>
+			<li><a href="#multiple">Multiple Repositories</a></li>
+			<li><a href="#getting_started">Getting Started</a></li>
+		</ul>
+		</nav>
+
+
+        <article id="basics">
+        	<h2>Basics</h2>
+
+        	<dl>
+	        	<dt><code>git init</code></dt>
+	        	<dd>Initialize new repository in local directory. Nothing commited yet!</dd>
+
+	        	<dt><code>git status</code></dt>
+	        	<dd>Check status of repository</dd>
+
+	        	<dt><code>git add &lt;file&gt;</code></dt>
+	        	<dd>Add &lt;file&gt; to staging area</code></dd>
+
+	        	<dt><code>git add .</code></dt>
+	        	<dd>Add all modified files to staging area</code></dd>
+
+	        	<dt><code>git commit -m "&lt;comment&gt;"</code></dt>
+	        	<dd>Commit current staging area with comment</dd>
+
+        		<dt><i class="icon-book"></i> Staging area</dt>
+        		<dd>Before commiting changes they must be staged. This allows to select only specific changes</dd>
+	        </dl>
+        </article>
+
+        <article id="history">
+        	<h2>History</h2>
+
+        	<dl>
+	        	<dt><code>git log</code></dt>
+	        	<dd>List what changes have been made</dd>
+
+	        	<dt><code>git hist</code></dt>
+	        	<dd>Custom list (see Aliases)</dd>
+
+	        	<dt><code>git log --pretty=oneline</code></dt>
+	        	<dd>Easier to view format</dd>
+
+	        	<dt><code>git log --graph</code></dt>
+	        	<dd>ASCII graph layout</dd>
+
+	        	<dt><i class="icon-book"></i> HEAD</dt>
+        		<dd>The branch and version to which the working directory points to</dd>
+
+        		<dt><i class="icon-book"></i> detached HEAD</dt>
+        		<dd>The working directory doesn't point to the latest version of a specific branch anymore. All commits will be lost when switching to a branch if you don't create a new branch for them.</dd>
+
+	        </dl>
+
+	        <h3>Options</h3>
+			<code class="multiline">git log --pretty=oneline --max-count=2
+git log --pretty=oneline --since='5 minutes ago'
+git log --pretty=oneline --until='5 minutes ago'
+git log --pretty=oneline --author=NAME
+git log --pretty=oneline --all</code>
+		</article>
+
+        <article id="versions">
+	        <h2>Old versions</h2>
+
+        	<dl>
+	        	<dt><code>git checkout &lt;hash/tag&gt;</code></dt>
+	        	<dd>Checkout an old revision</dd>
+
+	        	<dt><code>git checkout &lt;tag&gt;^</code></dt>
+	        	<dd>Checkout the version before an old tag</dd>
+
+	        	<dt><code>git checkout master</code></dt>
+	        	<dd>Return to latest version of the master branch</dd>
+	        </dl>
+	    </article>
+
+        <article id="tagging">
+	        <h2>Tagging</h2>
+
+        	<dl>
+	        	<dt><code>git tag v1</code></dt>
+	        	<dd>Create the tag v1</dd>
+
+	        	<dt><code>git tag</code></dt>
+	        	<dd>Show all tags</dd>
+
+	        	<dt><code>git hist master --all</code></dt>
+	        	<dd>Show tags in the log</dd>
+
+	        </dl>
+        </article>
+        
+        <article id="mistakes">
+        	<h2>Fixing Mistakes</h2>
+
+
+        	<dl>
+	        	<dt><code>git checkout &lt;file&gt;</code></dt>
+	        	<dd>Overwrites any changes in the current working directory for &lt;file&gt;</dd>
+
+	        	<dt><code>git reset HEAD &lt;file&gt;</code></dt>
+	        	<dd>Removes file from staging area. The change will still be in the working directory</dd>
+
+	        	<dt><code>git hist master --all</code></dt>
+	        	<dd>Show tags in the log</dd>
+
+	        	<dt><code>git revert HEAD</code></dt>
+	        	<dd>Undo all changes in the last commit (Creates a new commit)</dd>
+
+	        	<dt><code>git revert &lt;hash/tag&gt;</code></dt>
+	        	<dd>Undo all changes in the specified commit (Creates a new commit)</dd>
+
+	        	<dt><code>git reset --hard &lt;hash/tag&gt;</code></dt>
+	        	<dd>Remove all commits after the specified. They can still be viewed via <code>git hist --all</code> until the garbage collection runs</dd>
+
+	        	<dt><code>git tag -d &lt;tag&gt;</code></dt>
+	        	<dd>Remove a tag</dd>
+
+	        	<dt><code>git commit --amend -m "&lt;comment&gt;"</code></dt>
+	        	<dd>Add a change to the last commit instead of creating a new commit</dd>
+	        </dl>
+        </article>
+
+        <article id="branching">
+        	<h2>Branching</h2>
+
+
+        	<dl>
+	        	<dt><code>git branch &lt;branchname&gt;</code></dt>
+	        	<dd>Creates a new branch. Note that the working directory isn't automatically switched to the new branch. You still need to checkout the new branch or use the shortcut below</dd>
+
+	        	<dt><code>git checkout &lt;branchname&gt;</code></dt>
+	        	<dd>Switch working directory to a different branch. Use <code>git checkout master</code> to switch back to the master branch</dd>
+
+	        	<dt><code>git checkout -b &lt;branchname&gt;</code></dt>
+	        	<dd>Shortcut for doing <code>git branch &lt;branchname&gt;</code> followed by <code>git checkout &lt;branchname&gt;</code></dd>
+
+				<dt><code>git log --graph --all</code></dt>
+				<dd>Display all diverging branches via a ASCII graph</dd>
+
+        		<dt><i class="icon-book"></i> master</dt>
+        		<dd>master is the default name for the main branch</dd>
+	        </dl>
+        </article>
+
+
+        <article id="merging">
+        	<h2>Merging</h2>
+
+        	<dl>
+	        	<dt><code>git merge &lt;branchname&gt;</code></dt>
+	        	<dd>Merges &lt;branchname&gt; into the current branch.</dd>
+
+	        	<dt><code>git rebase &lt;branchname&gt;</code></dt>
+	        	<dd>Merges &lt;branchname&gt; into the current branch <b>and</b> integrates all commits into the history of the current branch.</dd>
+
+
+				<dt><i class="icon-bug"></i> <i>CONFLICT (content): Merge conflict in ...</i></dt>
+				<dd>Conflict during merging. Files got modified in both branches and can't be merged automatically. The different versions got written into the conflicting files. Fix and commit them manually.</dd>
+
+				<dt><i class="icon-lightbulb"></i> Rebase vs. merge</dt>
+				<dd>Rebase changes the history. This means information about where the changes came from (i.e. the other branch) will be lost. Recomendation: Use rebase for short-lived local branches to keep the history readable but use merge for everything else - especially when collaborating with other developers</dd>
+
+				<dt><i class="icon-book"></i> Fast-forward merge</dt>
+				<dd>A fast forward merge happens when the branch get created, modified and merged back without the original branch being changed in the meantime. In this case the HEAD of the orginal branch gets set to the HEAD of the modified branch. No further merging necessary and no conflicts possible</dd>
+	        </dl>
+        </article>
+
+        <article id="multiple">
+        	<h2>Multiple Repositorues</h2>
+
+        	<dl>
+	        	<dt><code>git clone &lt;repo&gt; &lt;cloned_repo&gt;</code></dt>
+	        	<dd>Creates a copy of the repository.</dd>
+
+	        	<dt><code> git clone --bare &lt;repo&gt; &lt;bare_repo.git&gt;</code></dt>
+	        	<dd>Creates a bare repository (without working files).</dd>
+
+	        	<dt><code>git remote</code></dt>
+	        	<dd>Lists all known remote repositories</dd>
+
+	        	<dt><code>git remote show origin</code></dt>
+	        	<dd>Shows details of the remote repository</dd>
+
+	        	<dt><code>git remote add &lt;new name&gt; &lt;remot repo&gt;</code></dt>
+	        	<dd>Adds a remote repository to the current one</dd>
+
+				<dt><code>git branch -a</code></dt>
+				<dd>List local and remote branches</dd>
+
+				<dt><code>git fetch</code></dt>
+				<dd>Copies all changes from the original repository into the cloned one. They <b>do not</b> get merged into local tracking branches. Use <code>git merge origin/master</code> to do that</dd>
+
+				<dt><code>git pull</code></dt>
+				<dd>Copies all changes <b>and</b> merges them into the current branch</dd>
+
+				<dt><code>git branch --track &lt;branch&gt; origin/&lt;remote branch&gt;</code></dt>
+				<dd>Adds a new tracking branch</dd>
+
+				<dt><code>git push &lt;repo&gt; &lt;branch&gt;</code></dt>
+				<dd>Copies all changes from the local branch into the remote repository</dd>
+
+        		<dt><i class="icon-book"></i> origin</dt>
+        		<dd>Default name for a remote repository.</dd>
+
+				<dt><i class="icon-book"></i> Fast-forward merge</dt>
+	        	<dd>A fast forward merge happens when the branch get created, modified and merged back without the original branch being changed in the meantime. In this case the HEAD of the orginal branch gets set to the HEAD of the modified branch. No further merging necessary and no conflicts possible</dd>
+
+
+				<dt><i class="icon-book"></i> Remote-tracking branch</dt>
+	        	<dd>A remote-tracking branch is a mirror of a branch in the remote repository. It can be identified by the prefix <i>remotes/...</i> <code>git clone</code> automatically creates remote-tracking branches. They are <b>read-only</b></dd>
+
+
+				<dt><i class="icon-book"></i> Tracking branch</dt>
+	        	<dd>A tracking is local branch that is connected to a remote-tracking branch. It can be used tu pull changes fromor push changes to the remote repository. <code>got clone</code> automatically create a tracking branch for <i>remotes/origin/master</i></dd>
+	        	
+	        </dl>
+        </article>
+
+
+        <article id="internals">
+        	<h2>Internals</h2>
+
+
+        	<dl>
+	        	<dt><code>git mv &lt;file&gt; &lt;new_file&gt;</code></dt>
+	        	<dd>Move file. Equivalant of deleting the old file and adding it under the new name.</dd>
+
+	        	<dt><code>git mv &lt;file&gt; &lt;new_file&gt;</code></dt>
+	        	<dd>Move file. Equivalant of deleting the old file and adding it under the new name.</dd>
+
+
+	        	<dt><code>git cat-file -t &lt;hash&gt;</code></dt>
+	        	<dd>Print the type of a git object</dd>
+
+	        	<dt><code>git cat-file -p &lt;hash&gt;</code></dt>
+	        	<dd>Print the content of a git object</dd>
+
+	        </dl>
+        </article>
+
+        <article id="getting_started" class="full">
+        	<h2>Getting Started</h2>
+
+        	<h3>Configuration</h3>
+
+        	<code class="multiline">git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"</code>
+
+	        <h3>Aliases</h3>
+
+	        <p>Git aliases in file <i>$HOME/.gitconfig</i>.</p>
+
+			<code class="multiline">[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p</code>
+
+	        <p>Shell aliases in file <i>$HOME/.profile</i>.</p>
+			<code class="multiline">alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all'
+alias gx='gitx --all'
+alias got='git '
+alias get='git '</code>
+
+			<h3>Links</h3>
+			<p><a href="http://gitimmersion.com">http://gitimmersion.com</a></p>
+        </article>       
+	</div>
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+
+</body>
+</html>

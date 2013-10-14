@@ -1,0 +1,287 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+</head>
+<body data-language="javascript">
+	<h1>Javascript</h1>
+
+	<div class="container">
+        <article class="large">
+        	<h2>HTML</h2>
+
+        	<dl>
+	        	<dt>Import:</dt>
+	        	<dd><code data-language="html">&lt;script type="text/javascript" src="js/file.js">&lt;/script></code></dd>
+
+	        	<dt>Inline:</dt>
+	        	<dd><code data-language="html">&lt;script type="text/javascript">alert('Hello World');&lt;/script></code></dd>
+
+	        	<dt>Call:</dt>
+	        	<dd><code data-language="html">&lt;button id="start" onClick="start()" style="">Start&lt;/button></code></dd>
+	        </dl>
+        </article>
+
+        <article class="small">
+        	<h2>More Information</h2>
+
+        	<ul>
+        		<li><a href="http://developer.mozilla.org/en/docs/JavaScript">Mozilla Javascript Information and reference</a></li>
+        		<li><a href="http://developer.mozilla.org/en/docs/A_re-introduction_to_JavaScript">Tutorial: A re-introduction to JavaScript</a></li>
+        		<li><a href="http://yuiblog.com/crockford/">Douglas Crockford's videos</a></li>	
+        		<li><a href="http://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript#1598077">Stackoverflow - Inheritance</a></li>	<li><a href="http://www.jsfiddle.net">JSFiddle - Test Javascript in the browser</a></li>	
+
+        	</ul>
+
+        </article>
+
+        <article>
+        	<h2>Basics</h2>
+
+        	<dl>
+	        	<dt><code>var name;</code></dt>
+	        	<dd>Initialize a local variable with value <code>undefined</code></dd>
+
+	        	<dt><code>var name = 1;</code></dt>
+	        	<dd>Initialize variable with value 1</dd>
+
+	        	<dt><code>name = 1;</code></dt>
+	        	<dd>Initialize a <b>global</b> variable with value 1</dd>
+
+	        	<dt><code>typeof name</code></dt>
+	        	<dd>Returns the name of the variables type as string (e.g. "number")</dd>
+
+	        	<dt><code>a === b</code></dt>
+	        	<dd>Checks for value and type equality as opposed to <code>==</code> which only checks for value equality</dd>	
+
+	        	<dt><code>document.write('Hello World<br />')</code></dt>
+	        	<dd>Write something to the page</dd>
+
+	        	<dt><code>window.location = 'http://www.google.com'</code></dt>
+	        	<dd>Load new url</dd>
+
+	        	<dt><code>alert('Hello World')</code></dt>
+	        	<dd>Open an alert dialog</dd>
+
+	        	<dt><code>console.log('Hello World')</code></dt>
+	        	<dd>Logs to the console in most modern browsers. <kbd>F12</kbd> opens the console in chrome</dd>
+	        </dl>
+        </article>
+
+        <article>
+        	<h2>Math</h2>
+
+        	<dl>
+	        	<dt><code>parseInt(string, base)</code></dt>
+	        	<dd>Returns an integer (base can be 2 for binary, 10 for decimal, 16 for hex, ...)</dd>
+
+	        	<dt><code>parseFloat(string)</code></dt>
+	        	<dd>Returns a float (always base 10)</dd>
+
+	        	<dt><code>Math.round(num * 100) / 100</code></dt>
+	        	<dd>Round to two decimal places</dd>
+	        </dl>
+    	</article>
+
+		<article>
+			<h2>Special Types</h2>
+
+			<dl>
+				<dt><code>NaN</code></dt>
+				<dd>Not a number. Gets returned when math operation fail. Use <code>isNaN(value)</code> to check for it because its not possible to check via the <code>==</code> operator</dd>
+
+				<dt><code>Infinity</code> and <code>-Infinity</code></dt>
+				<dd>Represents an infinite number. Use <code>isFinite(nubmer)</code> to check for it (returns false for <code>NaN</code> too)</dd>
+
+				<dt><code>undefined</code></dt>
+				<dd>Value of variables that hasn't been assigned yet</dd>
+
+				<dt><code>null</code></dt>
+				<dd>Placeholder for an object when there is no object</dd>
+			</dl>
+
+		</article>
+
+		<article>
+			<h2>Global functions</h2>
+
+			<dl>
+				<dt><code>decodeURI</code></dt>
+				<dd class="todo">TODO</dd>
+
+				<dt><code>decodeURIComponent</code></dt>
+				<dd class="todo">TODO</dd>
+
+				<dt><code>encodeURI</code></dt>
+				<dd class="todo">TODO</dd>
+
+				<dt><code>encodeURIComponent</code></dt>
+				<dd class="todo">TODO</dd>
+
+				<dt><code>eval</code></dt>
+				<dd class="todo">TODO</dd>
+
+
+				<dt><code>uneval</code></dt>
+				<dd class="todo">TODO</dd>
+			</dl>
+
+
+		</article>
+
+		<article>
+			<h2>Objects</h2>
+
+			<p>JavaScript objects are simply collections of name-value pairs. Similar to dictionaries or maps in other languages.</p>
+
+			<dl>
+				<dt>Create an object</dt>
+				<dd><code>var obj = new Object();</code><br/>or<br/><code>var obj = {};</code></dd>
+
+				<dt>Access properties</dt>
+				<dd><code>obj.name = "Simon";</code><br/>or<br/><code>var name = obj.name;</code><br/>or<br/><code>obj["name"] = "Simon";</code><br/>or<br/><code>var name = obj["name"];</code></dd>
+
+				<dt>Initialize object with properties</dt>
+				<dd><code class="multiline">var obj = {
+    name: "Carrot",
+    "for": "Max",
+    details: {
+        color: "orange",
+        size: 12
+    }
+}</code></dd>
+			</dl>
+		</article>
+
+		<article>
+			<h2>Classes</h2>
+
+<code class="multiline">function Person(first, last) {
+    this.first = first;
+    this.last = last;
+}
+Person.prototype.fullName = function() {
+    return this.first + ' ' + this.last;
+}
+Person.prototype.fullNameReversed = function() {
+    return this.last + ', ' + this.first;
+}</code>
+
+		<p><code>this</code> refers to the object before the <code>.</code>. <code>new</code> creates a new object and binds it to <code>this</code>. For example: 
+<code class="multiline">s = new Person("Simon", "Willison")
+s.fullName;</code></p>	
+
+		<h3>Common methods</h3>
+
+		<dl>
+			<dt><code>obj.hasOwnProperty("prop")</code></dt>
+			<dd>Checks whether this objects contains the property directly. Unlike <code>"prop" in obj</code> it doesn't check the prototype chain</dd>
+
+			<dt><code>isPrototypeOf</code></dt>
+			<dd class="todo">TODO</dd>
+
+			<dt><code>obj.propertyIsEnumerable("prop")</code></dt>
+			<dd>Checks if the property can be used in a <code>for ... in ..</code> loop</dd>
+
+			<dt><code>obj.toString()</code> and <code>obj.toLocaleString()</code></dt>
+			<dd>Returns a string representation of the object. Some objects (e.g. <code>Date</code>) take the configured locale (country/language settings) into account</dd>
+
+			<dt><code>obj.valueOf()</code></dt>
+			<dd>Returns a primitive value for the object. If there is no primitive value the object itself gets returned. Note that this is usually called automatically via a process called <b>autoboxing</b>.</dd>
+		</dl>
+
+		<p class="todo">Describe: Prototype chain</p>
+
+		</article>
+
+		<article>
+			<h2>Functions</h2>
+
+			<p><code  class="multiline">function add(x, y) {
+    var total = x + y;
+    return total;
+}</code>or anonymous: <code  class="multiline">var add = function(x, y) {
+    var total = x + y;
+    return total;
+}</code></p>
+
+			<p>Functions implicitly define the array <code>arguments</code> which contains all parameters. These can be more or less than declared in the function header.</p>
+
+			<dl>
+				<dt><code>func.apply(null, [2, 3, 4, 5])</code></dt>
+				<dd>Calls function using the content of an array as parameters. First parameter is an object or <i>null</i> if it's a simple function</dd>
+
+				<dt><code>call</code></dt>
+				<dd class="todo">TODO</dd>
+			</dl>
+		</article>
+
+		<article>
+			<h2>Arrays</h2>
+
+			<p>JavaScript objects are simply collections of name-value pairs.</p>
+
+			<dl>
+				<dt>Create an array</dt>
+				<dd><code class="multiline">var a = new Array();
+a[0] = "dog";
+a[1] = "cat";
+a[2] = "hen";</code>
+or
+<code class="multiline">var a = ["dog", "cat", "hen"];</code>
+				</dd>
+
+				<dt><code>a.lenhgt</code></dt>
+				<dd>Returns the lenght of the array. This must not be the amount of values since there could be gaps</dd>
+
+
+				<dt>Loop</dt>
+				<dd><code class="multiline">for (var i = 0; i &lt; a.length; i++) {
+    //Do something with a[i]
+}</code>
+Do not use the following because it will also loop over every property of the array object:
+					<s><code class="multiline">for (var i in a) {
+  // Do something with a[i]
+}</code></s></dd>
+
+
+
+				<dt><code>a.toString()</code></dt>
+
+				<dt><code>a.toLocaleString()</code></dt>	 
+				<dt><code>a.concat(item[, itemN])</code></dt>
+				<dd>Returns a new array with the items added on to it.</dd>
+				<dt><code>a.join(sep)</code></dt>	 
+				<dt><code>a.pop()</code></dt>	
+				<dd>Removes and returns the last item.</dd>
+				<dt><code>a.push(item[, itemN])</code></dt>	
+				<dd>Push adds one or more items to the end.</dd>
+				<dt><code>a.reverse()</code></dt>
+				<dd>Reverses the order of the elements in this array. Returns the reversed array.</dd>	 
+				<dt><code>a.shift()</code></dt>	 
+				<dt><code>a.slice(start, end)</code></dt>	
+				<dd>Returns a sub-array.</dd>
+				<dt><code>a.sort([cmpfn])</code></dt>	
+				<dd>Takes an optional comparison function.</dd>
+				<dt><code>a.splice(start, delcount[, itemN])</code></dt>	
+				<dd>Lets you modify an array by deleting a section and replacing it with more items.</dd>
+				<dt><code>a.unshift([item])</code></dt>	Prepends items to the start of the array.
+
+
+			</dl>
+		</article>
+
+	</div>
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+
+</body>
+</html>

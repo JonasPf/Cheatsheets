@@ -1,0 +1,170 @@
+<html>
+<head>
+	<!-- makes browser more consistent -->
+	<link rel="stylesheet" href="css\normalize.css">
+
+	<!-- necessary for rainbow js -->
+	<link rel="stylesheet" href="css\solarized-light.css"> 
+
+	<!-- cheatsheet specific stylesheets -->
+	<link rel="stylesheet" href="css\cheatsheet.css">
+</head>
+<body>
+	<h1>Bash</h1>
+
+	<div class="container">
+
+		<article>
+			<h2>Link</h2>
+
+			<a href="http://explainshell.com/">http://explainshell.com - Type in a command to see the help text for it's arguments</a>
+		</article>
+
+		<article>
+			<h2>Configuration</h2>
+
+			<dl>
+				<dt><code>/etc/profile</code></dt>
+				<dd>generic system-wide profile</dd>
+
+				<dt><code>.bash_profile</code></dt>
+				<dd>processed every time I login (e.g. via ssh, console, ...)</dd>
+
+				<dt><code>.bashrc</code></dt>
+				<dd>processed every time I open a non-login shell (e.g. xterm)</dd>
+			</dl>
+
+			<hr/>
+
+			<p>Call .bashrc from .bash_profile:
+				<code class="multiline" data-language="shell">if [ -f ~/.bashrc ]
+then 
+	~/.bashrc
+fi</code>
+			</p>
+		</article>
+
+		<article>
+			<h2>Keyboard Shortcuts</h2>
+
+			<table class="nowrap_first_column">
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>A</kbd></td>
+					<td>Go to the beginning of the line</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>E</kbd></td>
+					<td>Go to the end of the line</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>L</kbd></td>
+					<td>Clear the screen</td>
+				</tr>
+
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>R</kbd></td>
+					<td>Search through previously used commands</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td>
+					<td>Puts the current process into the background. Run <code>fg</code> to restore it.</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+					<td>Delete everything after the cursor</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>U</kbd></td>
+					<td>Delete everything before the cursor</td>
+				<tr>
+
+				<tr>
+					<td><kbd>Ctrl</kbd> + <kbd>T</kbd></td>
+					<td>Swap the two characters before the cursor</td>
+				</tr>
+				
+				<tr>
+					<td><kbd>Tab</kbd></td>
+					<td>Autocomplete</td>
+				</tr>
+			</table>
+		</article>
+
+		<article>
+			<h2>Alias</h2>
+
+			<dl>
+				<dt><code>alias ls="ls -l"</code></dt>
+				<dd>Calls <code>ls -l</code> every time I run <code>ls</code></dd>
+
+				<dt><code>unalias ls</code></dt>
+				<dd>Removes previous alias</dd>
+
+				<dt><code>alias -p</code></dt>
+				<dd>Print all aliases</dd>
+			</dl>
+		</article>
+
+		<article>
+			<h2>Processes</h2>
+
+			<dl>
+				<dt><code>jobs</code></dt>
+				<dd>Lists all background processes and there jobspec</dd>
+
+				<dt><code>ps</code></dt>
+				<dd>Lists all processes and there pid</dd>
+
+				<dt><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
+				<dd>Puts the current process into the background</dd>
+
+				<dt><code>fg [%jobspec]</code></dt>
+				<dd>Puts process in the foreground</dd>
+
+				<dt><code>bg [%jobspec]</code></dt>
+				<dd>Puts process in the background</dd>
+
+				<dt><code>cp bigfile target <strong>&amp;</strong></code></dt>
+				<dd>Runs copy process in the background</dd>
+
+				<dt><kbd>Ctrl</kbd> + <kbd>C</kbd></dt>
+				<dd>Kill the current foreground process</dd>
+
+				<dt><code>kill -15 %jobspec|pid</code></dt>
+				<dd>Shutdown the process orderly.</dd>
+
+				<dt><code>kill -9 %jobspec|pid</code></dt>
+				<dd>Kill the process mercilessly</dd>
+
+			</dl>
+		</article>
+
+		<article>
+			<h2>Quoting</h2>
+			
+			<dl>
+				<dt>Backslash: <code>\</code></dt>
+				<dd>Escape character</dd>
+
+				<dt>Single quote: <code>'string'</code></dt>
+				<dd>Every character stands for itself. No escape character</dd>
+
+				<dt>Double quote: <code>"string"</code></dt>
+				<dd><code>$</code>, <code>`</code>, <code>\</code>, <code>!</code>, <code>*</code> and <code>@</code> have a special meaning</dd>
+
+				<dt>ANSI-C$'string'
+			</dl>
+		</article>
+	</div>
+
+	<!-- syntax highlighting -->
+	<script src="js\cheatsheet.js"></script>
+	<script src="js\rainbow-custom.min.js"></script>
+
+</body>
+</html>
